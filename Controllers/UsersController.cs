@@ -134,6 +134,20 @@ namespace RecipeApi.Controllers
 
             return Ok(new { message = "Favorite removed successfully" });
         }
+
+        [HttpGet("{userId}/favorites")]
+        [Authorize]
+        public async Task<IActionResult> GetFavorites(string userId)
+        {
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (currentUserId != userId)
+            {
+                return Unauthorized(new { message = "You can only view your own favorites" });
+            }
+
+            var favorites = await _favoriteService.GetFavorites(userId);
+            return Ok(favorites);
+        }
             
     }
 }
