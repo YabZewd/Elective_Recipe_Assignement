@@ -115,5 +115,25 @@ namespace RecipeApi.Controllers
 
             return Ok(new { message = "Favorite added successfully" });
         }
+
+          [HttpDelete("{userId}/favorites/{recipeId}")]
+        [Authorize]
+        public async Task<IActionResult> RemoveFavorite(string userId, string recipeId)
+        {
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (currentUserId != userId)
+            {
+                return Unauthorized(new { message = "You can only remove favorites from your own profile" });
+            }
+
+            var result = await _favoriteService.RemoveFavorite(userId, recipeId);
+            if (!result)
+            {
+                return BadRequest(new { message = "Failed to remove favorite" });
+            }
+
+            return Ok(new { message = "Favorite removed successfully" });
+        }
+            
     }
 }
