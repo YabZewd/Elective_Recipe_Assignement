@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Desktop\\Elective_Recipe_Assignement\\..csproj": {}
+    "E:\\Project\\New folder\\New folder\\Elective_Recipe_Assignement\\..csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Desktop\\Elective_Recipe_Assignement\\..csproj": {
+    "E:\\Project\\New folder\\New folder\\Elective_Recipe_Assignement\\..csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Elective_Recipe_Assignement\\..csproj",
+        "projectUniqueName": "E:\\Project\\New folder\\New folder\\Elective_Recipe_Assignement\\..csproj",
         "projectName": ".",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Elective_Recipe_Assignement\\..csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Elective_Recipe_Assignement\\obj\\",
+        "projectPath": "E:\\Project\\New folder\\New folder\\Elective_Recipe_Assignement\\..csproj",
+        "packagesPath": "C:\\Users\\o\\.nuget\\packages\\",
+        "outputPath": "E:\\Project\\New folder\\New folder\\Elective_Recipe_Assignement\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\o\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -44,9 +44,25 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.1, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[3.1.0, )"
             }
           },
           "imports": [
