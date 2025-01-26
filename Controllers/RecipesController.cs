@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using RecipeApi.Models;
 using RecipeApi.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RecipeApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/recipe")]
     public class RecipeController : ControllerBase
@@ -19,6 +21,9 @@ namespace RecipeApi.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Recipe>>> GetAllRecipes()
         {
+            var userId = HttpContext.Items["UserId"]?.ToString();
+            if (userId == null) return Unauthorized("Invalid token");
+
             var recipes = await _recipeService.GetAllRecipes(userId);
             return Ok(recipes);
         }
@@ -38,10 +43,12 @@ namespace RecipeApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Recipe>> GetRecipeById(string id)
         {
+            var userId = HttpContext.Items["UserId"]?.ToString();
+            if (userId == null) return Unauthorized("Invalid token");
 
             try
             {
-                var recipe = await _recipeService.GetRecipeById(id);
+                var recipe = await _recipeService.GetRecipeById(id, userId);
                 return Ok(recipe);
             }
             catch (KeyNotFoundException ex)
