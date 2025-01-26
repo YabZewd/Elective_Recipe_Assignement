@@ -2348,19 +2348,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\o\\.nuget\\packages\\": {}
+    "C:\\Users\\hp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Project\\New folder\\New folder\\Elective_Recipe_Assignement\\..csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Desktop\\RecipeApi\\Elective_Recipe_Assignement\\..csproj",
       "projectName": ".",
-      "projectPath": "E:\\Project\\New folder\\New folder\\Elective_Recipe_Assignement\\..csproj",
-      "packagesPath": "C:\\Users\\o\\.nuget\\packages\\",
-      "outputPath": "E:\\Project\\New folder\\New folder\\Elective_Recipe_Assignement\\obj\\",
+      "projectPath": "C:\\Users\\hp\\Desktop\\RecipeApi\\Elective_Recipe_Assignement\\..csproj",
+      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hp\\Desktop\\RecipeApi\\Elective_Recipe_Assignement\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\o\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

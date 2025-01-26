@@ -58,5 +58,43 @@ namespace RecipeApi.Controllers
 
             return Ok(new { token });
         }
- }
+
+        [HttpPut("{id}")]
+        [Authorize] // Requires a valid JWT token
+        public async Task<IActionResult> UpdateUser(string id, [FromBody] UserUpdateDto userUpdateDto)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId != id)
+            {
+                return Unauthorized(new { message = "You can only update your own profile" });
+            }
+
+            var result = await _userService.UpdateUser(id, userUpdateDto);
+            if (!result)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            return Ok(new { message = "User updated successfully" });
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId != id)
+            {
+                return Unauthorized(new { message = "You can only delete your own profile" });
+            }
+
+            var result = await _userService.DeleteUser(id);
+            if (!result)
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+            return Ok(new { message = "User deleted successfully" });
+        }
+    }
 }
