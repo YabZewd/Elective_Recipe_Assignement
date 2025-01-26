@@ -96,5 +96,24 @@ namespace RecipeApi.Controllers
 
             return Ok(new { message = "User deleted successfully" });
         }
+
+        [HttpPost("{userId}/favorites/{recipeId}")]
+        [Authorize]
+        public async Task<IActionResult> AddFavorite(string userId, string recipeId)
+        {
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (currentUserId != userId)
+            {
+                return Unauthorized(new { message = "You can only add favorites to your own profile" });
+            }
+
+            var result = await _favoriteService.AddFavorite(userId, recipeId);
+            if (!result)
+            {
+                return BadRequest(new { message = "Failed to add favorite" });
+            }
+
+            return Ok(new { message = "Favorite added successfully" });
+        }
     }
 }
