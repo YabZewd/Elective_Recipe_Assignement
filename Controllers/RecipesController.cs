@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using RecipeApi.Models;
 using RecipeApi.Services;
-
+using Microsoft.AspNetCore.Authorization;
+using RecipeApp.Dtos;
+using RecipeApp.Mapper;
 namespace RecipeApi.Controllers
 {
     [ApiController]
@@ -24,15 +26,16 @@ namespace RecipeApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Recipe>> AddRecipe(Recipe newRecipe)
+        public async Task<ActionResult<Recipe>> AddRecipe(RecipeDto newRecipe)
         {
 
             var userId = HttpContext.Items["UserId"]?.ToString();
             if (userId == null) return Unauthorized("Invalid token");
 
-            newRecipe.UserId = userId; // Assign recipe to logged-in user
-            await _recipeService.AddRecipe(newRecipe);
-            return CreatedAtAction(nameof(GetRecipeById), new { id = newRecipe.Id }, newRecipe);
+            var recipeModel = RecipeMapper.MapToRecipe(newRecipe);
+            recipeModel.UserId = userId;
+            await _recipeService.AddRecipe(recipeModel);
+            return CreatedAtAction(nameof(GetRecipeById), new { id = recipeModel.Id}, recipeModel);
         }
 
         [HttpGet("{id}")]
